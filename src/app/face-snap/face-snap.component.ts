@@ -1,4 +1,4 @@
-import { Component, Oninit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-face-snap',
@@ -13,5 +13,10 @@ export class FaceSnapComponent implements OnInit{
   createdDate!: Date;
   snaps!: number;
 
-
+  ngOnInit(): void {
+    this.title = 'Face Snap';
+    this.description = 'This is a face snap component';
+    this.createdDate = new Date();
+    this.snaps = 0;
+  }
 }
