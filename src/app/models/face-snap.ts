@@ -3,7 +3,7 @@ export class FaceSnap {
   }
 
     addSnap() {
-    this.snaps++;
+        this.snaps++;
     }
 
     removeSnap() {
