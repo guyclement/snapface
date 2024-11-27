@@ -13,6 +13,8 @@ export class FaceSnapComponent implements OnInit{
   createdDate!: Date;
   snaps!: number;
   imageUrl!: string;
+  AlreadySnapped!: boolean;
+  SnappeButtonLabel!: string;
 
   ngOnInit(): void {
     this.title = 'Face Snap';
@@ -20,5 +22,27 @@ export class FaceSnapComponent implements OnInit{
     this.createdDate = new Date();
     this.snaps = 0;
     this.imageUrl = 'https://www.w3schools.com/howto/img_avatar.png';
+    this.AlreadySnapped = false;	
+    this.SnappeButtonLabel = 'Snap';
+  }
+
+  OnAddSnap(): void {
+    if(this.AlreadySnapped) {
+      this.removeSnap();
+      return;
+    }
+    this.addSnap();
+  }
+
+  addSnap(){
+    this.snaps++;
+    this.SnappeButtonLabel = 'Remove snap';
+    this.AlreadySnapped = true;
+  }
+
+  removeSnap(){
+    this.snaps--;
+    this.SnappeButtonLabel = 'Snap';
+    this.AlreadySnapped = false;
   }
 }
