@@ -1,6 +1,6 @@
 <div class="face-snap-card" [ngClass]="{ snapped: AlreadySnapped }">
   <div class="TitleAndLocation">
-    <h2>{{ faceSnap.title }}</h2>
+    <h2>{{ faceSnap.title | titlecase }}</h2>
     @if (faceSnap.location){
       <p>📍 {{ faceSnap.location }}</p>
     }@else {
