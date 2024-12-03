@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { NgStyle, NgClass, TitleCasePipe } from '@angular/common';
+import { FaceSnapsService } from '../services/face-snaps.service';
 
 @Component({
   selector: 'app-face-snap',
@@ -14,6 +15,9 @@ export class FaceSnapComponent implements OnInit{
 
   AlreadySnapped!: boolean;
   SnappeButtonLabel!: string;
+
+  constructor(private faceSnapService: FaceSnapsService) {
+  }
 
   ngOnInit(): void {
     this.AlreadySnapped = false;	
@@ -29,7 +33,7 @@ export class FaceSnapComponent implements OnInit{
   }
 
   addSnap(){
-    this.faceSnap.addSnap();
+    this.faceSnapService.snapFaceSnapById(this.faceSnap.id);
     this.SnappeButtonLabel = 'Remove snap';
     this.AlreadySnapped = true;
   }
