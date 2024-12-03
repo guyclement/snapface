@@ -33,13 +33,13 @@ export class FaceSnapComponent implements OnInit{
   }
 
   addSnap(){
-    this.faceSnapService.snapFaceSnapById(this.faceSnap.id);
+    this.faceSnapService.snapFaceSnapById(this.faceSnap.id, 'snap');
     this.SnappeButtonLabel = 'Remove snap';
     this.AlreadySnapped = true;
   }
 
   removeSnap(){
-    this.faceSnap.removeSnap();
+    this.faceSnapService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
     this.SnappeButtonLabel = 'Snap';
     this.AlreadySnapped = false;
   }

@@ -1,3 +1,5 @@
+import { SnapType } from "./snap-type.type";
+
 export class FaceSnap {
 
     location ?: string;
@@ -14,6 +16,13 @@ export class FaceSnap {
         this.snaps--;
     }
 
+    snap(SnapType: SnapType): void {
+        if(SnapType === 'snap') {
+            this.addSnap();
+        } else if (SnapType === 'unsnap') {
+            this.removeSnap();
+        }
+    }
     setLocation(location: string): void {
         this.location = location;
     }
