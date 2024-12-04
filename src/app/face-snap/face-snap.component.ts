@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { NgStyle, NgClass, TitleCasePipe } from '@angular/common';
-import { FaceSnapsService } from '../services/face-snaps.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-face-snap',
@@ -10,37 +10,13 @@ import { FaceSnapsService } from '../services/face-snaps.service';
   templateUrl: './face-snap.component.html',
   styleUrl: './face-snap.component.scss'
 })
-export class FaceSnapComponent implements OnInit{
+export class FaceSnapComponent{
  @Input() faceSnap!: FaceSnap;
 
-  AlreadySnapped!: boolean;
-  SnappeButtonLabel!: string;
-
-  constructor(private faceSnapService: FaceSnapsService) {
+  constructor(private router: Router) {
   }
 
-  ngOnInit(): void {
-    this.AlreadySnapped = false;	
-    this.SnappeButtonLabel = 'Snap';
-  }
-
-  OnAddSnap(): void {
-    if(this.AlreadySnapped) {
-      this.removeSnap();
-      return;
-    }
-    this.addSnap();
-  }
-
-  addSnap(){
-    this.faceSnapService.snapFaceSnapById(this.faceSnap.id, 'snap');
-    this.SnappeButtonLabel = 'Remove snap';
-    this.AlreadySnapped = true;
-  }
-
-  removeSnap(){
-    this.faceSnapService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
-    this.SnappeButtonLabel = 'Snap';
-    this.AlreadySnapped = false;
+  onViewFaceSnap(){
+    this.router.navigateByUrl(`/facesnaps/${this.faceSnap.id}`);
   }
 }
